@@ -15,6 +15,8 @@ let eje_x_4 = [100];
 let eje_y_4 = [100];
 let eje_z_4 = [100];
 
+let millisegundos = millis();
+let tiempomillis = 0;
 
 function preload() {
   table = loadTable('assets/natural_1.csv', 'csv', 'header');
@@ -61,7 +63,7 @@ function setup() {
 
 
 function draw() {
-  background(80);
+  //background(80);
 
   //drag to move the world.
   orbitControl();
@@ -114,6 +116,15 @@ function draw() {
   box(300);
   pop();
 
-
+if (millisegundos > tiempomillis)
+{
+  tiempomillis = millisegundos + 1000;
+  background(150);
+}
+else
+{
+    background(80);
+}
+}
 
 }
