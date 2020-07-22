@@ -58,7 +58,7 @@ function setup() {
     eje_y_4[r]=table4.getString(r, 3);
     eje_z_4[r]=table4.getString(r, 4);
   }
-
+print("hola");
 }
 
 
@@ -116,16 +116,7 @@ function draw() {
   box(300);
   pop();
 
-if (millisegundos > tiempomillis)
-{
-  tiempomillis = millisegundos + 1000;
-  background(150);
-  print(tiempomillis);
-}
-else
-{
-    background(80);
-}
-}
+
+
 
 }
