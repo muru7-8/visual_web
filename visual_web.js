@@ -120,6 +120,7 @@ if (millisegundos > tiempomillis)
 {
   tiempomillis = millisegundos + 1000;
   background(150);
+  print(tiempomillis);
 }
 else
 {
