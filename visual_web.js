@@ -63,7 +63,7 @@ function setup() {
 
 
 function draw() {
-  //background(80);
+  background(80);
 
   //drag to move the world.
   orbitControl();
