@@ -15,8 +15,9 @@ let eje_x_4 = [100];
 let eje_y_4 = [100];
 let eje_z_4 = [100];
 
-let millisegundos = millis();
 let tiempomillis = 0;
+let contador = 0;
+let distancia_modelos = 800;
 
 function preload() {
   table = loadTable('assets/natural_1.csv', 'csv', 'header');
@@ -58,7 +59,6 @@ function setup() {
     eje_y_4[r]=table4.getString(r, 3);
     eje_z_4[r]=table4.getString(r, 4);
   }
-print("hola");
 }
 
 
@@ -71,10 +71,12 @@ function draw() {
 
   noFill();
   push();
-  for (let i = 0; i < table.getRowCount(); i++)
+  translate(0,0,-distancia_modelos);
+  for (let i = 1; i < contador; i++)
   {
     stroke(255);
     point(eje_x_1[i], eje_y_1[i], eje_z_1[i]);
+    line(eje_x_1[i-1], eje_y_1[i-1], eje_z_1[i-1], eje_x_1[i], eje_y_1[i], eje_z_1[i]);
   }
   stroke(0);
   box(300);
@@ -83,40 +85,54 @@ function draw() {
 
 
   push();
-  translate(500,0,500);
-  for (let i = 0; i < table2.getRowCount(); i++)
+  translate(-distancia_modelos,0,0);
+  for (let i = 1; i < contador; i++)
   {
     stroke(255);
     point(eje_x_2[i], eje_y_2[i], eje_z_2[i]);
+    line(eje_x_2[i-1], eje_y_2[i-1], eje_z_2[i-1], eje_x_4[i], eje_y_2[i], eje_z_2[i]);
   }
   stroke(0);
   box(300);
   pop();
 
   push();
-  translate(-500,0,500);
+  translate(distancia_modelos,0,0);
 
-  for (let i = 0; i < table3.getRowCount(); i++)
+  for (let i = 1; i < contador; i++)
   {
     stroke(255);
     point(eje_x_3[i], eje_y_3[i], eje_z_3[i]);
+    line(eje_x_3[i-1], eje_y_3[i-1], eje_z_3[i-1], eje_x_3[i], eje_y_3[i], eje_z_3[i]);
   }
   stroke(0);
   box(300);
   pop();
 
   push();
-  translate(0,0,1000);
-  for (let i = 0; i < table4.getRowCount(); i++)
+  translate(0,0,distancia_modelos);
+  for (let i = 1; i < contador; i++)
   {
     stroke(255);
     point(eje_x_4[i], eje_y_4[i], eje_z_4[i]);
+    line(eje_x_4[i-1], eje_y_4[i-1], eje_z_4[i-1], eje_x_4[i], eje_y_4[i], eje_z_4[i]);
   }
   stroke(0);
   box(300);
   pop();
 
+if(millis() > tiempomillis)
+{
+  tiempomillis = millis() + 1000;
+  contador++;
+}
 
-
+if(contador > table.getRowCount()
+|| contador > table2.getRowCount()
+||contador > table3.getRowCount()
+||contador > table4.getRowCount())
+{
+  contador = 0;
+}
 
 }
